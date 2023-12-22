@@ -1,0 +1,155 @@
+<!--
+	此示例下载自 https://echarts.apache.org/examples/zh/editor.html?c=line-gradient&code=PTAEAcCcFMBdYJbUgWgQcwHYHsYCgBjbTAZ1lABMBDWK0AXlAG0mAiARgE5OAWFdgEwoAzO1YAaUDwDs0gLqS2XTgFZ-Q0RNAAOXQIXMO3AGzqRYyexXHh8xUc7Szmy8OPTtBpd23OLodgAGXmMvB04_LWlOT3sBQITIyWkVfTiE9iSpbWE5OQBuQmIyShpoABkEEsZqWgA6AFsqcAAKADMAV0wCRGJQFoRYaAaASlAAbzxQUBhYDshMUEHhpkCCvABfEcKiUnIANyoAGw6KqvIamipG5vaunoQ-gaHRiamZuHnF5YamdnWtoUjnBQFQCAQOg0OkcyhQAGrHU4MUCBHbFchgiFQmFDeGIs7VUCHE4E2A3VrEpH0AB8b2mmMh0NhCJJoAA1IxKdBCtNZl9QeDGTjoHiSYVAXhsOBeotGJNpgAjMEAa3QkGwXQoAGFsEdcAAuUAAcgAxAIAKICaTCYRGyQgUAAQQoFFASoIqvVmtARD1kHevoNzFNWq1wgAYippHbjSbw-HOFqEkaDA6AMogo4ITDQH263Akd4OgCyVGVubVVAoSEw5CzOdAAAtkNB3vsqh1jqXwIamO9pvLpkOSI3sAB3Q1tY4kaDiftD2AAT3A0ENRt2iEwHQ1JDt8-mM8gSBIAElMBRoAAPQ2BOdDocNbM3u_30BNa9SBLzjYvgf70AjuOk7TrO_5Liua4btm24dLuv7Dsgx5nheH7sPB0zVg00CkI8mDPv-j54Si6FvlQH61KSdTApg6CwI2oAoAE37vAo7yILAwK9vOg73sCbSwJB2FDJAe6vqAQyXgJxoAHKQgqyCgNgbTidAZAIA0xDHnmRzAj0IqUPM2boOJzagIu0BUCJJESbAaZLpxdJidpQYhmGkbRqADoAKozqCpSQOWkAAY2Va5kpZnQDp47_hs37wTxC5SmuKgqAApKJr58VJ65CcgGX3jZa5akKNAIPsuZbg08lBeFQxqRpmBab6um4vlC5XrZ9mro5YmBpAa4mqGEZRkanlgD5uZ0NQAUKSOoWKcp5lRWOMXMdMrHTLA2C6ogPY9eJR7oOgyBrmRVRGu8P7vJejqXlUXH3glGFXIaFGVGQcXcf-tRUK9ZTvbAJFqggFDIVehrsGtoAbWZt33cw3FXY9_7A6D57g0x96xetL6ow9Q5PW62DwNgDRrsYgTpZ9yNiVte1GhTVNYyxL6Hse-N_rTy7dUa9bQG1B6jmOaaLlVuqGrAkCnCRP2GlyAMkTC8lHIahOC0BB3S_-0zgNgJCDLha50wLQ5tLgTTwCdxrjAQGwm0jr6YFQWFrgAmhZkBHIuoAACJXG1Duc6-4E83zJuAcLosKuLmugWJssCliTK4iypwK_-N13ae6OoSRi5w9nKEQ4rVDK6r2vBRrkta05EB6wbxBG1KJvTGbkAW8Ja423bJGB0OTsu8ajqCtisK-_78EO3Imz5EAA
+	⚠ 请注意，该图表不是 Apache ECharts 官方示例，而是由用户代码生成的。请注意鉴别其内容。
+-->
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+  <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+  <div id="container" style="height: 100%"></div>
+
+  
+  <script type="text/javascript" src="https://registry.npmmirror.com/echarts/5.4.3/files/dist/echarts.min.js"></script>
+  <!-- Uncomment this line if you want to dataTool extension
+  <script type="text/javascript" src="https://registry.npmmirror.com/echarts/5.4.3/files/dist/extension/dataTool.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use gl extension
+  <script type="text/javascript" src="https://registry.npmmirror.com/echarts-gl/2/files/dist/echarts-gl.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to echarts-stat extension
+  <script type="text/javascript" src="https://registry.npmmirror.com/echarts-stat/latest/files/dist/ecStat.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use map
+  <script type="text/javascript" src="https://registry.npmmirror.com/echarts/4.9.0/files/map/js/china.js"></script>
+  <script type="text/javascript" src="https://registry.npmmirror.com/echarts/4.9.0/files/map/js/world.js"></script>
+  -->
+  <!-- Uncomment these two lines if you want to use bmap extension
+  <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=YOUR_API_KEY"></script>
+  <script type="text/javascript" src="https://registry.npmmirror.com/echarts/5.4.3/files/dist/extension/bmap.min.js"></script>
+  -->
+
+  <script type="text/javascript">
+    var dom = document.getElementById('container');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var app = {};
+    
+    var option;
+
+    // prettier-ignore
+const data = [["1994-12-31", 477], ["1995-12-31", 8882], ["1996-12-31", 15637], ["1997-12-31", 13678], ["1998-12-31", 10946], ["1999-12-31", 798], ["2000-12-31", 752], ["2001-12-31", 483]];
+const dateList = data.map(function (item) {
+  return item[0];
+});
+const valueList = data.map(function (item) {
+  return item[1];
+});
+let accumulatedValue = 0;
+const accumulatedValueList = valueList.map(value => {
+  accumulatedValue += value;
+  return accumulatedValue;
+});
+option = {
+  backgroundColor: '#2E2733', // Add background color
+  color: ['#CC3F57', '#FF9C00'], // Set line colors
+  // Make gradient line here
+  visualMap: [
+    {
+      show: false,
+      type: 'continuous',
+      seriesIndex: 0,
+      min: 0,
+      max: 400
+    },
+    {
+      show: false,
+      type: 'continuous',
+      seriesIndex: 1,
+      dimension: 0,
+      min: 0,
+      max: dateList.length - 1
+    }
+  ],
+  title: [
+    {
+      left: 'center',
+      text: 'Number of testimonies collected during the year',
+      textStyle: {
+        color: '#CC3F57' // Use a darker shade of yellow
+      }
+    },
+    {
+      top: '55%',
+      left: 'center',
+      text: 'Cumulative number of testimonies collected',
+      textStyle: {
+        color: '#CC3F57' // Use a darker shade of yellow
+      }
+    }
+  ],
+  tooltip: {
+    trigger: 'axis'
+  },
+  xAxis: [
+    {
+      data: dateList
+    },
+    {
+      data: dateList,
+      gridIndex: 1
+    }
+  ],
+  yAxis: [
+    {},
+    {
+      gridIndex: 1
+    }
+  ],
+  grid: [
+    {
+      bottom: '60%'
+    },
+    {
+      top: '60%'
+    }
+  ],
+  series: [
+    {
+      type: 'line',
+      showSymbol: true,
+      data: valueList,
+      label: {
+        show: true,
+        position: 'top',
+        formatter: '{c}',
+      },
+      name: 'Yearly Data',
+    },
+    {
+      type: 'line',
+      showSymbol: true,
+      data: accumulatedValueList,
+      xAxisIndex: 1,
+      yAxisIndex: 1,
+      label: {
+        show: true,
+        position: 'top',
+        formatter: '{c}',
+      },
+      name: 'Accumulated Data',
+    },
+  ]
+};
+
+    if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart.resize);
+  </script>
+</body>
+</html>
